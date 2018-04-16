@@ -1,0 +1,53 @@
+body  {
+	background-color:#fff;
+    margin: 0;
+    padding: 0; 
+}
+a, a:hover, a:visited {
+	text-decoration:none !important;
+}
+a {
+	color:black;
+}
+a:hover {
+	color:grey;
+}
+h1, h2, h3, h4, h5 {
+	color:darkslategrey;
+}
+img {
+	vertical-align:middle;
+}
+.debug {
+	background-color:lime;
+	border:1px dashed red;
+}
+div {
+	box-sizing: border-box;
+	vertical-align:top;
+}
+.navbar {
+	background-color:steelblue;
+}
+.navbar .title {
+	margin-bottom:0
+}
+.navbar a, .navbar a:visited {
+	color:white !important;
+	padding-right:0.8em;
+}
+.navbar-menu {
+	background-color:steelblue;
+	padding:1em;
+}
+#content {
+	min-height:40em;
+}
+#instances {
+	display:flex;
+}
+.instance {
+	justify-content:center;
+	width:24em;
+	margin:0 0.5em 0 0.5em;
+}

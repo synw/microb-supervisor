@@ -1,0 +1,23 @@
+{% load staticfiles %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Microb supervisor</title>
+    {% include "microb/head.html" %}
+</head>
+
+<body>
+	<div id="app">
+		<div id="header" class="container-fluid">
+			{% include "microb/header.html" %}
+		</div>
+		<div id="content" class="container">
+			{% block content %}{% endblock %}
+		</div>
+	</div>
+	{% include "instant/client.html" %}
+<script>
+{% include "microb/js/app.js" %}
+</script>
+</body>
+</html>

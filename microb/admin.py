@@ -5,7 +5,7 @@ from .models import Instance
 
 @admin.register(Instance)
 class InstanceAdmin(admin.ModelAdmin):
-    prepopulated_fields = {"slug": ("domain", "ip")}
+    #prepopulated_fields = {"slug": ("domain", "ip")}
     search_fields = ['ip', 'domain']
     list_display = ["domain", "ip", "port"]
-    readonly_fields = ["url", "ping_channel"]
+    readonly_fields = ["url", "channel_in", "channel_out"]

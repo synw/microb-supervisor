@@ -17,7 +17,7 @@ const app = new Vue({
         }
 	},
 	methods: {
-		cmd: function(name, service, args) {
+		cmd: function(name, service, args, noLog) {
 			var id = Math.random().toString(36).substr(2, 12);
 			var payload = {
 				"Id": id,
@@ -28,7 +28,8 @@ const app = new Vue({
 				"Domain": "{{ instance.domain }}",
 				"Status": "pending",
 				"ErrMsg": "",
-				"Date": new Date(Date.now()).toISOString()
+				"Date": new Date(Date.now()).toISOString(),
+				"NoLog": noLog
 			}
 			return payload
 		},
@@ -41,16 +42,15 @@ const app = new Vue({
 			}, 10000);
 		},
 		ping: function(sub, instance) {
-			var payload = this.cmd("ping", "infos", []);
+			var payload = this.cmd("status", "http", [], true);
 			this.cmds[payload.Id] = "pending";
-			//if (instance.status !== "up") {
+			if (instance.status === "Unknown") {
 				instance.status = "Pinging..."
-			//}
+			}
 			this.cmds[payload.Id] = {"domain": instance.domain, "status": "published"};
 			this.runCmd(this.cmds[payload.Id], instance);
 			sub.publish(payload).then(function() {
 		        //console.log("ID", this.cmds[payload.Id], sub.channel);
-		        //instance.status = "up"
 		    }, function(err) {
 		    	delete this.cmds[payload.Id]
 		    	instance.status = "error"

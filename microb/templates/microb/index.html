@@ -5,40 +5,38 @@
 <div class="columns">
 	<div class="column" id="instances">
 		<div v-for="instance in instances">
-			<div class="card instance">
-				<div class="card-content">
-					 <div class="media-content">
-					 	<div class="title">
-					 		<i class="fa fa-server"></i>&nbsp;<span v-html="instance.domain"></span>
-					 		<div style="display:inline-block;vertical-align:middle">
-					 		<div class="tags has-addons">
-								<span class="tag">Status</span>
-								<div v-if="instance.status === 'down'">
-									<span class="tag is-danger">Down</span>
-								</div>
-								<div v-else-if="instance.status === 'up'">
-									<span class="tag is-success">Up</span>
-								</div>
-								<div v-else-if="instance.status === 'pinging'">
-									<span class="tag is-infos">Pinging ...</span>
-								</div>
-								<div v-else>
-									<span class="tag is-dark" v-html="instance.status"></span>
-								</div>
-							</div>
-							</div>
-					 	</div>
-					 </div>
-					 {% verbatim %}
-					 <div class="subtitle is-upspace-05">
-					 	<a href="http://{% instance.url %}"><span v-html="instance.url"></span></a>
-					 </div>
+			<nav class="panel instance">
+				<p class="panel-heading">
+					<i class="fa fa-server"></i>&nbsp;<span v-html="instance.domain"></span>
+				 	{% verbatim %}
+					 	<a href="http://{! instance.url !}"><span v-html="instance.url"></span></a>
 					 {% endverbatim %}
-					 <div class="content">
-					 	
-					 </div>
-				</div>
-			</div>
+			 		<span class="tags has-addons status">
+			 			<span class="tag">Status</span>
+						<span v-if="instance.status === 'down'">
+							<span class="tag is-danger">Down</span>
+						</span>
+						<span v-else-if="instance.status === 'up'">
+							<span class="tag is-success">Up</span>
+						</span>
+						<span v-else-if="instance.status === 'pinging'">
+							<span class="tag is-infos">Pinging ...</span>
+						</span>
+						<span v-else>
+							<span class="tag has-text-grey is-pulled-right" v-html="instance.status"></span>
+						</span>
+					</span>
+				</p>
+				<p class="panel-tabs">
+				    <a class="is-active">Logs</a>
+				    <a>Commands</a>
+				    <a>Hits</a>
+			  </p>
+			  <div class="panel-block is-active">
+			  	<textarea class="output" v-model="instance.logs"></textarea>
+			  </div>
+			</nav>
+
 		</div>
 	</div>
 </div>
